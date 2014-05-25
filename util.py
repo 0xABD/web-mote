@@ -32,6 +32,7 @@ def nameToTitle(filename):
     return re.sub(" [ _-]+", " - ", re.sub("[-_]", " ", os.path.basename(filename).title()))
 
 def entryToDict(entry):
+#BUG: os.path.splitext handles filenames with multiple dots badly
     name, ext = os.path.splitext(entry)
     if os.path.isdir(entry) or ext == '':
         ext = "directory"

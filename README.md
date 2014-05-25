@@ -46,4 +46,6 @@ The folder/video/audio/image icons are from the [Crystal Clear set](http://commo
 
 A copy of [jQuery](http://jquery.com/) is included for ease of use. It's [dual-licensed under GPL and MIT-style expat licenses](http://jquery.org/license/).
 
-A copy of the fantastic [Angular.js](http://angularjs.org/) is included for ease of use. It's released under an [MIT-style expat license](https://github.com/angular/angular.js/blob/master/LICENSE)
+A copy of the fantastic [Angular.js](http://angularjs.org/) is included for ease of use. It's released under an [MIT-style expat license](https://github.com/angular/angular.js/blob/master/LICENSE).
+
+A copy of [Underscore.js](http://underscorejs.org/) is included. Underscore.js is released under an [MIT-style license](https://github.com/jashkenas/underscore/blob/master/LICENSE).

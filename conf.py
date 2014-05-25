@@ -3,3 +3,6 @@ root = ["/path/to/media/files"]
 
 ## HTTP listener port
 port = 18080
+
+## use libavcodec to parse ID3 V2 tags
+demuxer = "lavf"

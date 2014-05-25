@@ -4,7 +4,7 @@ import conf
 
 def fileInfo(filename):
     """Parses the output of mplayer to find file properties of the given media file."""
-    lines = check_output(["mplayer", "-vo", "null", "-ao", "null", "-frames", "0", "-identify", filename, "2>/dev/null"]).split("\n")
+    lines = check_output(["mplayer", "-vo", "null", "-ao", "null", "-frames", "0", "-demuxer", conf.demuxer, "-identify", filename, "2>/dev/null"]).split("\n")
     res, temp = ({}, "")
     for l in lines:
         s = l[3:].split("=")
@@ -33,7 +33,7 @@ def nameToTitle(filename):
 
 def entryToDict(entry):
     name, ext = os.path.splitext(entry)
-    if ext == '':
+    if os.path.isdir(entry) or ext == '':
         ext = "directory"
     else:
         ext = ext[1:]
@@ -43,7 +43,7 @@ def entriesToDicts(entries):
     dirs, files = [[],[]]
     for f in entries:
         res = entryToDict(f)
-        if os.path.isdir(res['path']):
+        if res['type'] == "directory":
             dirs.append(res)
         else:
             files.append(res)
@@ -64,10 +64,13 @@ def dirToJSON(directory):
 
 def deepListDir(directory):
     res = []
-    for e in os.listdir(directory):
-        path = os.path.join(directory, e)
-        if os.path.isdir(path):
-            res += deepListDir(path)
-        else:
-            res.append(path)
+    try:
+        for e in os.listdir(directory):
+            path = os.path.join(directory, e)
+            if os.path.isdir(path):
+                res += deepListDir(path)
+            else:
+                res.append(path)
+    except:
+        pass
     return sorted(res)

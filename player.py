@@ -52,7 +52,8 @@ def listen():
 
 def playFile(playerCmd, fileName, cmdTable):
     __clearQueue(commandQueue)
-    activePlayer = Popen(playerCmd + [fileName], stdin=PIPE)
+    devnull = open('/dev/null')
+    activePlayer = Popen(playerCmd + [fileName], stdin=PIPE, stdout=devnull, stderr=devnull)
     while activePlayer.poll() == None:
         try:
             res = commandQueue.get(timeout=1)

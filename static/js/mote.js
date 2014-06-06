@@ -91,8 +91,8 @@ function FeedCtrl ($scope, $parse) {
     $scope.playlist = [];
 
     $scope.fileToDict = function (filename) {
-	var split = filename.split(".")
-	return {name: split[0], extension: split[1].toLocaleLowerCase()}
+        var dotidx = filename.lastIndexOf(".");
+        return {name: filename.substr(0, dotidx), extension: filename.substr(dotidx + 1).toLocaleLowerCase()}
     }
 
     $scope.source = new EventSource('/status');
